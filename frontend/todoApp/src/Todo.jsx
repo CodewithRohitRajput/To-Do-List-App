@@ -11,7 +11,7 @@ const Todo = () => {
     } , []);
 
     const fetchTask = async ()=>{
-      const res=  await axios.get('http://localhost:3000/task');
+      const res=  await axios.get(`${API_BASE_URL}/task`);
         setTasks(res.data)
     }
 
@@ -19,7 +19,7 @@ const Todo = () => {
         e.preventDefault();
         try{
             if(taskId){
-                await axios.put(`http://localhost:3000/task/${taskId}` , form)
+                await axios.put(`${API_BASE_URL}/task/${taskId}` , form)
                 setTaskId(null); 
                 setForm({task : '' , completed : false});
                 fetchTask();
@@ -28,7 +28,7 @@ const Todo = () => {
             else{
 
             
-            await axios.post('http://localhost:3000/task' , form)
+            await axios.post(`${API_BASE_URL}/task` , form)
             setForm({task : '' , completed : false});
             fetchTask();
             console.log("form submitted")
@@ -45,13 +45,13 @@ const Todo = () => {
         console.log("Task Deletion Canceled");
         return;
       }
-         await axios.delete(`http://localhost:3000/task/${id}`);
+         await axios.delete(`${API_BASE_URL}/task/${id}`);
          fetchTask();
             console.log('Task deleted')
     }
 
     const handleStatus = async (id , currStatus ) =>{
-       await axios.patch(`http://localhost:3000/task/${id}`   , { completed: !currStatus });
+       await axios.patch(`${API_BASE_URL}/task/${id}`   , { completed: !currStatus });
         fetchTask();
     }
 
