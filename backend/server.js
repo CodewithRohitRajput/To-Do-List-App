@@ -9,7 +9,7 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/todoApp_1')
+mongoose.connect('mongodb+srv://rohitsinghrajput964:Ow5BWz1YEXhB0ewh@cluster0.uakgl.mongodb.net/todoApp_1')
 .then(()=>{
     console.log("MongoDB Connected");
 })
